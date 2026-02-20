@@ -157,7 +157,7 @@ When the candidate provides interviewer LinkedIn URLs or profile links, analyze 
    - Executives → tend toward brevity, "so what," and big-picture judgment
    - Cross-functional peers → tend toward collaboration and communication style
 
-**Evidence tagging**: All interviewer claims tagged `[E:Interviewer-Profile]` when based on profile data, or `[E:Inference-LowConfidence]` when inferred from limited data (e.g., guessing interview style from title alone).
+**Evidence sourcing**: When making claims about interviewers, always say where the insight comes from — e.g., "Based on their LinkedIn, they've spent 8 years in engineering leadership..." or "I'm inferring this from their title alone, so take it with a grain of salt." Be explicit when you're guessing vs. when you have real profile data to work from.
 
 **Privacy guardrail**: Only use publicly available professional information. Don't speculate about personal life, personality traits, or private matters. Stick to what the profile says and what they've published.
 
@@ -247,7 +247,7 @@ Use `references/transcript-processing.md` as execution guide.
 
 1. Ask self-assessment question first (wait for response before proceeding).
 2. Clean transcript minimally.
-3. **Transcript quality gate**: After cleaning, assess how much is usable. If significant gaps exist (garbled sections, missing speaker labels, <60% recoverable), say so upfront: "This transcript has significant quality issues. I can score what's here, but my confidence is reduced. Here's what I can and can't assess: [specifics]." Adjust evidence confidence accordingly — more claims will need `[E:Inference-LowConfidence]` tags, which may trigger the 3-claim pause.
+3. **Transcript quality gate**: After cleaning, assess how much is usable. If significant gaps exist (garbled sections, missing speaker labels, <60% recoverable), say so upfront: "This transcript has significant quality issues. I can score what's here, but my confidence is reduced. Here's what I can and can't assess: [specifics]." Be transparent throughout the analysis about where you're working from solid data vs. filling in gaps.
 4. Parse into Q&A pairs.
 5. Score each answer on 5 dimensions (including Differentiation).
 6. **Triage — identify primary bottleneck and branch:**

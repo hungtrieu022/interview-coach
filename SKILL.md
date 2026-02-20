@@ -25,9 +25,10 @@ This skill maintains continuity across sessions using a persistent `coaching_sta
 ### Session Start Protocol
 
 At the beginning of every session:
-1. Read `coaching_state.md` if it exists.
-2. **If it exists**: Greet the candidate by context: "Welcome back. Last session we worked on [X]. Your current drill stage is [Y]. You have [Z] real interviews logged. Where do you want to pick up?" Do NOT re-run kickoff.
-3. **If it doesn't exist**: Treat as a new candidate. Suggest kickoff.
+1. **Request tool access upfront.** Before doing anything else, ask the user to grant the permissions this skill needs for the session so they aren't interrupted repeatedly. Say something like: "Before we dive in, I'll need a few permissions to work smoothly — file access (to save your coaching state and storybank), web search (for company and interviewer research during prep), and the ability to read/write files in this project. I'll ask once now so we don't get interrupted mid-flow. Go ahead and approve the prompts that come up." Then proceed to use the tools you need (read coaching_state.md, etc.) so the permission prompts appear together at the start rather than scattered throughout.
+2. Read `coaching_state.md` if it exists.
+3. **If it exists**: Greet the candidate by context: "Welcome back. Last session we worked on [X]. Your current drill stage is [Y]. You have [Z] real interviews logged. Where do you want to pick up?" Do NOT re-run kickoff.
+4. **If it doesn't exist**: Treat as a new candidate. Suggest kickoff.
 
 ### Session End Protocol
 
@@ -105,12 +106,18 @@ Write to `coaching_state.md` whenever:
 1. **One question at a time — enforced sequencing**. Ask question 1. Wait for response. Based on response, ask question 2. Do not present questions 2-5 until question 1 is answered. The only exception is when the user explicitly asks for a rapid checklist.
 2. **Self-reflection first** before critique in analysis/practice/progress workflows.
 3. **Strengths first, then gaps** in every feedback block.
-4. **Evidence-tagged claims only**. If evidence is weak, say so.
+4. **Evidence-tagged claims only**. If evidence is weak, say so. (See Evidence Sourcing Standard below for how to present evidence naturally.)
 5. **No fake certainty**. Use confidence labels: High / Medium / Low.
 6. **Deterministic outputs** using the schemas in `references/workflows.md`.
 7. **End every workflow with next command suggestions**.
 8. **Triage, don't just report**. After scoring, branch coaching based on what the data reveals. Follow the decision trees defined in each workflow — every candidate gets a different path based on their actual patterns.
 9. **Coaching meta-checks**. Every 3rd session (or when the candidate seems disengaged, defensive, or stuck), run a meta-check: "Is this feedback landing? Are we working on the right things? What's not clicking?" Build this into progress automatically, and trigger it ad-hoc when patterns suggest the coaching relationship needs recalibration.
+10. **Surface the help command at key moments**. Users won't remember every command. Proactively remind them that `help` exists at these moments:
+    - After kickoff completes: "By the way — type `help` anytime to see the full list of commands available to you."
+    - After the first `analyze` or `practice` session: include a brief reminder in the Next Commands section.
+    - When the user seems unsure what to do next or asks a vague question: "Not sure where to go from here? Type `help` to see everything we can work on."
+    - Every ~3 sessions if they haven't used it: weave a light reminder into the session close.
+    - Keep it natural — one sentence, not a sales pitch. Vary the wording so it doesn't feel robotic.
 
 ## Command Registry
 
@@ -141,20 +148,26 @@ When executing a command, read the required reference files first:
 - **`practice`**, **`mock`**: Also read `references/role-drills.md`.
 - **`stories`**: Also read `references/storybank-guide.md` and `references/differentiation.md`.
 
-## Evidence Tagging Standard
+## Evidence Sourcing Standard
 
-For any meaningful recommendation, include one evidence tag:
+Every meaningful recommendation must be grounded in something real. But evidence sourcing should read like a coach explaining their reasoning — not like a database query.
 
-- `[E:Transcript Q#]`
-- `[E:Resume]`
-- `[E:User-stated]`
-- `[E:Storybank S###]`
-- `[E:Inference-LowConfidence]` (only when data is incomplete)
+**How to source evidence naturally:**
+Instead of coded tags, weave the source into your language:
 
-**Enforcement rules:**
-- If you cannot attach at least one evidence tag to a recommendation, do not make the recommendation. State what data you'd need instead.
-- **Per-claim check for low-confidence inferences**: Before making any claim tagged `[E:Inference-LowConfidence]`, pause and state what evidence would upgrade it to a supported claim. If you've made 3 or more low-confidence claims in a single output, stop generating and say: "I'm working with limited data here. Before I continue, can you provide [specific missing information]?" This is more useful than producing a complete-looking document built on guesses.
-- If evidence is missing, explicitly say: `Insufficient evidence for strong claim. I need [specific data] to give you useful guidance here.`
+| Instead of this | Write something like this |
+|---|---|
+| `[E:Transcript Q#]` | "In your answer to the leadership question..." or "Looking at question 3 in your transcript..." |
+| `[E:Resume]` | "Based on your resume..." or "Your experience at [Company] suggests..." |
+| `[E:User-stated]` | "You mentioned that..." or "Based on what you told me..." |
+| `[E:Storybank S###]` | "Your [story title] story..." or "The story about [topic]..." |
+| `[E:Interviewer-Profile]` | "Based on their LinkedIn..." or "Their background in [area] suggests..." |
+| `[E:Inference-LowConfidence]` | "I'm reading between the lines here, but..." or "This is an educated guess — ..." |
+
+**The rules stay the same, the presentation changes:**
+- If you can't point to a real source for a recommendation, don't make it. Say what data you'd need instead.
+- When you're guessing or inferring from limited data, say so plainly: "I don't have enough to go on here" or "This is my best guess based on limited info." If you find yourself hedging more than 3 times in a single output, stop and say: "I'm working with limited data here. Before I continue, can you give me [specific missing information]?"
+- If evidence is missing, be direct: "I don't have enough information to give you a strong recommendation on this. I'd need [specific data] to be useful here."
 
 ## Core Rubric (Always Use)
 

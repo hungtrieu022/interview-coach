@@ -112,11 +112,11 @@ These examples show what good skill output looks like. Use them as calibration a
 - Candidate Self-Assessment: "I think I handled it okay — maybe a 3 on Credibility? I got a bit flustered by the interruption."
 
 ### What Worked
-1. You acknowledged the skepticism directly instead of deflecting: "That's a fair read — let me clarify what actually happened." This is strong. [E:Practice round observation]
+1. You acknowledged the skepticism directly instead of deflecting: "That's a fair read — let me clarify what actually happened." This is strong — I heard you pivot in real time and it landed.
 2. Your opening structure was clean — you front-loaded the disagreement before the context.
 
 ### Gaps
-1. After the interruption, you over-explained. Your response to the pushback was 90 seconds — the pushback response should be 20-30 seconds max. You were defending, not clarifying. [E:Practice round observation]
+1. After the interruption, you over-explained. Your response to the pushback was 90 seconds — the pushback response should be 20-30 seconds max. I could hear you shift from clarifying into defending.
 2. The resolution was vague: "We eventually aligned." How? Who moved? What did you specifically do to influence the outcome?
 
 ### Scorecard

@@ -48,7 +48,7 @@ After cleaning, assess how much of the transcript is usable before proceeding to
 | Quality Level | Criteria | Action |
 |---|---|---|
 | **High** (>80% clean) | Clear speaker labels, most content recoverable, questions identifiable | Proceed with full analysis. Normal evidence confidence. |
-| **Medium** (60-80% clean) | Some garbled sections, occasional missing speaker labels, most Q&A pairs recoverable | Proceed but flag: "This transcript has gaps. I'll note where my confidence is reduced." More claims will need [E:Inference-LowConfidence] tags. |
+| **Medium** (60-80% clean) | Some garbled sections, occasional missing speaker labels, most Q&A pairs recoverable | Proceed but flag: "This transcript has gaps. I'll note where my confidence is reduced." Be explicit when claims are based on incomplete data. |
 | **Low** (<60% clean) | Major gaps, missing speaker labels, garbled sections, can't identify all questions | Say so upfront: "This transcript has significant quality issues. I can score [N] of the [M] answers, but my confidence is low overall. Here's what I can and can't assess." Consider asking: "Do you remember any answers that are missing or garbled? Your memory + partial transcript is better than partial transcript alone." |
 
 State the quality level at the start of analysis. Don't pretend bad data is good data.
@@ -120,7 +120,7 @@ After scanning, include detected anti-patterns in the analysis output. Each dete
 
 ## Step 3: Multi-Lens Scoring
 
-Run the parsed transcript through evaluative lenses. **Important**: Which lenses you run depends on the post-scoring decision tree in `references/workflows.md` (under `analyze`). If a primary bottleneck is identified after initial scoring, scope the analysis accordingly rather than running all four lenses mechanically. Always apply the evidence tagging standard from SKILL.md — if you hit 3+ `[E:Inference-LowConfidence]` claims, pause and request data before continuing.
+Run the parsed transcript through evaluative lenses. **Important**: Which lenses you run depends on the post-scoring decision tree in `references/workflows.md` (under `analyze`). If a primary bottleneck is identified after initial scoring, scope the analysis accordingly rather than running all four lenses mechanically. Always follow the evidence sourcing standard from SKILL.md — source claims naturally in your language, and if you find yourself hedging or guessing more than 3 times in a single output, pause and request data before continuing.
 
 ### Lens 1: Hiring Manager Perspective
 
